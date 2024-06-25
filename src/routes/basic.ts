@@ -3,7 +3,7 @@ import { ResObject } from "../types"
 
 const basic = new Hono();
 
-basic.get('/valiable', (c) => {
+basic.get('/variable', (c) => {
     // ===== var =====
     var id = "I0001"
     /* 
