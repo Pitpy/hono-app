@@ -1,5 +1,5 @@
 import { Hono } from "hono";
-import { ResObject } from "../../types"
+import { ResObject } from "../types"
 
 const user = new Hono();
 
