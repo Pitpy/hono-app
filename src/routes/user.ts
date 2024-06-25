@@ -1,19 +1,22 @@
 import { Hono } from "hono";
+import { ResObject } from "../../types"
 
 const user = new Hono();
 
 user.get('/', (c) => {
-    return c.json({
+    let res: ResObject = {
         code: 10,
         message: 'get success',
-    })
+    }
+    return c.json(res)
 })
 
 user.post('/', (c) => {
-    return c.json({
+    let res: ResObject = {
         code: 10,
         message: 'post success',
-    })
+    }
+    return c.json(res)
 })
 
 export { user }
