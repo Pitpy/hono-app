@@ -19,10 +19,10 @@ basic.get('/variable', (c) => {
     */
 
     // ===== const =====
-    const phone = 55555555
+    const phone = "55555555"
     /*
         const ແມ່ນຕົວປ່ຽນທີ່ບໍ່ສາມາດປ່ຽນແປງຄ່າໄດ້ ຫລື ບໍ່ສາມາດເອົາຄ່າໃຫມ່ໃສ່ໄດ້ ແລະ ຈຳກັດຂອບເຂດ
-        phone = 22222222 (error)
+        phone = "22222222" (error)
     */
 
     // Variable Scope (ຂອບເຂດຂອງຕົວປ່ຽນ)
@@ -42,7 +42,92 @@ basic.get('/variable', (c) => {
 
     let res: ResObject = {
         code: 10,
-        message: 'Basic TypeScript Variable'
+        message: 'Basic JavaScript/TypeScript Variable'
+    }
+    return c.json(res);
+})
+
+basic.get('/datatype', (c) => {
+    let fullname = "John Doe" // string
+    let salary = 100000.00 // number
+    let maried = false // boolean
+    let activity = ['Sport', 'Music', 'Fitness'] // array
+    let address = { village: '', district: '', province: '' } // object
+
+    // TypeScript
+    let v1: string = ""
+    let v2: number = 0
+    let v3: boolean = false
+    let v4: []
+    let v5: {}
+
+    let res: ResObject = {
+        code: 10,
+        message: 'Basic JavaScript/TypeScript Data Type'
+    }
+    return c.json(res);
+})
+
+basic.get('/condition', (c) => {
+    let v1 = 1
+    let v2 = 2
+
+    if (v1 + v2 === 3) {
+        console.log('v1 + v2 = 3', true);
+    } else if (v1 < v2) {
+        console.log('v1 < v2', true);
+    } else {
+        console.log('Others');
+    }
+
+    let res: ResObject = {
+        code: 10,
+        message: 'Basic JavaScript/TypeScript Condwition'
+    }
+    return c.json(res);
+})
+
+basic.get('/loop', (c) => {
+    let data = [1, 2, 3, 4, 5]
+
+    // for loop
+    for (let i = 0; i < data.length; i++) {
+        console.log('for loop:', i, data[i]);
+    }
+
+    // for of loop (ເອົາສະເພາະຄ່າ [value] ທີ່ຢູ່ໃນ data)
+    for (let o of data) {
+        console.log('for of loop:', o);
+    }
+
+    // for in loop (ເອົາສະເພາະຄີຍ໌ [key] ທີ່ຢູ່ໃນ data)
+    for (let i in data) {
+        console.log('for in loop:', i, data[i]);
+    }
+
+    // for each loop
+    data.forEach((o) => {
+        console.log('for each loop:', o);
+    })
+
+    // while loop
+    let wi = 0
+    while (data.length > wi) {
+        console.log('white loop:', data[wi]);
+        wi++
+    }
+
+    // do while loop
+    let dwi = 0
+    do {
+        console.log('do white loop:', data[dwi]);
+        dwi = dwi + 1
+    } while (data.length > dwi)
+
+
+    let res: ResObject = {
+        code: 10,
+        message: 'Basic JavaScript/TypeScript Condwition'
     }
     return c.json(res);
 })
