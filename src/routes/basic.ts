@@ -80,9 +80,25 @@ basic.get('/condition', (c) => {
         console.log('Others');
     }
 
+    let v3 = 5
+    switch (v3) {
+        case 1:
+            console.log('*switch v3 = 1', true);
+            break;
+        case 2:
+            console.log('*switch v3 = 2', true);
+            break;
+        case 5:
+            console.log('*switch v3 = 5', true);
+            break;
+        default:
+            console.log('*switch no matching case');
+            break;
+    }
+
     let res: ResObject = {
         code: 10,
-        message: 'Basic JavaScript/TypeScript Condwition'
+        message: 'Basic JavaScript/TypeScript Condition'
     }
     return c.json(res);
 })
@@ -126,10 +142,9 @@ basic.get('/loop', (c) => {
         console.log('end of do while loop');
     }
 
-
     let res: ResObject = {
         code: 10,
-        message: 'Basic JavaScript/TypeScript Condwition'
+        message: 'Basic JavaScript/TypeScript looping'
     }
     return c.json(res);
 })
