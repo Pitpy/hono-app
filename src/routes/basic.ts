@@ -42,7 +42,7 @@ basic.get('/variable', (c) => {
 
     let res: ResObject = {
         code: 10,
-        message: 'Basic TypeScript Valiable'
+        message: 'Basic TypeScript Variable'
     }
     return c.json(res);
 })
