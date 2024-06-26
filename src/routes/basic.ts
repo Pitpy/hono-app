@@ -144,7 +144,52 @@ basic.get('/loop', (c) => {
 
     let res: ResObject = {
         code: 10,
-        message: 'Basic JavaScript/TypeScript looping'
+        message: 'Basic JavaScript/TypeScript Looping'
+    }
+    return c.json(res);
+})
+
+basic.get('/string', (c) => {
+    let str = "Basic JavaScript/TypeScript"
+
+    console.log('str', str);
+
+    // string methods
+    console.log('split at index=0:', str.split(' ')[0]);
+    console.log('split at index=1:', str.split(' ')[1]);
+    console.log('substring:', str.substring(0, str.length - 1));
+    console.log('length:', str.length);
+    console.log('splice:', str.slice(0, 5));
+    console.log('charCodeAt:', str.charCodeAt(1));
+    console.log('replace:', str, 'to', str.replace('Basic', 'Simple'));
+
+    // string concat
+    str = str + ' String'
+    console.log('concat:', str);
+
+    let res: ResObject = {
+        code: 10,
+        message: str
+    }
+    return c.json(res);
+})
+
+basic.get('/array', (c) => {
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+    console.log('arr', arr);
+
+    // array methods
+    arr.push(10, 11, 12)
+    console.log('join:', arr.join('-'));
+    console.log('splice:', arr.splice(0, 2));
+    console.log('Filter:', arr.filter((e) => e === 3));
+    console.log('Find:', arr.find((e) => e === 3));
+    console.log('Map:', arr.map((e) => ({ value: e })));
+
+    let res: ResObject = {
+        code: 10,
+        message: 'Basic JavaScript/TypeScript Array'
     }
     return c.json(res);
 })
