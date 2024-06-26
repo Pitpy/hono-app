@@ -105,24 +105,26 @@ basic.get('/loop', (c) => {
         console.log('for in loop:', i, data[i]);
     }
 
-    // for each loop
+    // for each loop (ເປັນ method ຂອງ array)
     data.forEach((o) => {
         console.log('for each loop:', o);
     })
 
-    // while loop
+    // while loop (loop ຕາມເງື່ອນໄຂ)
     let wi = 0
     while (data.length > wi) {
-        console.log('white loop:', data[wi]);
-        wi++
+        console.log('while loop:', data[wi]);
+        wi = wi + 1;
     }
 
-    // do while loop
+    // do while loop (loop ຕາມເງື່ອນໄຂ ແຕ່ຈະມີເຫດການເກີດກ່ອນທີ່ຈະເຂົ້າເງື່ອນໄຂ)
     let dwi = 0
     do {
-        console.log('do white loop:', data[dwi]);
-        dwi = dwi + 1
-    } while (data.length > dwi)
+        console.log('do while loop:', data[dwi]);
+        dwi++
+    } while (data.length > dwi) {
+        console.log('end of do while loop');
+    }
 
 
     let res: ResObject = {
