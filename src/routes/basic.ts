@@ -194,4 +194,34 @@ basic.get('/array', (c) => {
     return c.json(res);
 })
 
+basic.get('/function', (c) => {
+
+    // normalize function
+    function normalizeFunction() {
+        console.log('hello normalize function');
+    }
+    normalizeFunction()
+
+    // anonymous function
+    const anonymousFunction = function () {
+        console.log('hello anonymous function');
+    }
+    anonymousFunction()
+
+    // arrow function
+    const arrowFunction = () => 'hello arrow function';
+    console.log(arrowFunction());
+
+    // self invoking function
+    (function () {
+        console.log('hello self involved function');
+    })()
+
+    let res: ResObject = {
+        code: 10,
+        message: 'Basic JavaScript/TypeScript Functions'
+    }
+    return c.json(res);
+})
+
 export { basic }
