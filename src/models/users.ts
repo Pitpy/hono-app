@@ -1,4 +1,3 @@
-import { appendFileSync } from "node:fs";
 import type { User } from "../types";
 
 const pathToFile = "./src/json/users.json"
