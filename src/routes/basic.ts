@@ -217,6 +217,15 @@ basic.get('/function', (c) => {
         console.log('hello self involved function');
     })()
 
+    // callback function
+    function a(v1: number, v2: number, f: Function) {
+        const rs = v1 + v2;
+        return f(rs)
+    }
+    a(1, 6, function (r: number) {
+        console.log('calculate result: ', r);
+    })
+
     let res: ResObject = {
         code: 10,
         message: 'Basic JavaScript/TypeScript Functions'
