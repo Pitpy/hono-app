@@ -66,7 +66,11 @@ function addToCart(product: Product, qty: number) {
     }
 
     if (cartItems.find(c => c.id === product.id)) { // ຄົ້ນຫາສິນຄ້າທີ່ຖືກເລືອກແລ້ວ
-        cartItems = cartItems.map((e) => ({ ...e, quantity: e.quantity + cart.quantity, amount: e.amount + cart.amount })) // ແກ້ໄຂຈຳນວນ ແລະ ລາຄາລວມ
+        cartItems = cartItems.map((e) => {
+            if (e.id === product.id) // ເລືອກແກ້ໄຂຕາມ ID ທີ່ກົງກັນ
+                return { ...e, quantity: e.quantity + cart.quantity, amount: e.amount + cart.amount } // ແກ້ໄຂຈຳນວນ ແລະ ຄາລາລວມ
+            return e
+        })
     } else {
         cartItems.push(cart) // ເພີ່ມລາຍການໃຫມ່
     }
@@ -87,5 +91,4 @@ function pickItem(id: number, qty: number) {
 }
 
 pickItem(1, 2)
-pickItem(1, 3)
 pickItem(5, 5)
