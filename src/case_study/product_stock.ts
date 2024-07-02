@@ -68,7 +68,7 @@ function addToCart(product: Product, qty: number) {
     cartItems.push(cart)
     updateItem({ ...product, stock: product.stock - qty }) // ຕັດສະຕ໊ອກ
 
-    let total = cartItems.reduce((_, cart) => (cart.amount * cartItems.length), 0) // ຍອດລວມທັງໝົດ ທີ່ລູກຄ້າຕ້ອງຈ່າຍ
+    let total = cartItems.reduce((sum, cart) => sum + cart.amount, 0) // ຍອດລວມທັງໝົດ ທີ່ລູກຄ້າຕ້ອງຈ່າຍ
 
     console.log('added to cart');
     console.table(cartItems);
@@ -81,5 +81,5 @@ function pickItem(id: number, qty: number) {
     addToCart(product, qty)
 }
 
-pickItem(1, 20)
+pickItem(1, 10)
 pickItem(2, 2)
