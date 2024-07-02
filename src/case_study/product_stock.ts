@@ -22,7 +22,7 @@ let productItems: Product[] = [
     { id: 10, name: 'Item 10', stock: 10, price: 10000 },
 ]
 let cartItems: Cart[] = []
-let totalStock = productItems.reduce((sum, product) => sum + product.stock, 0)
+let totalStock = productItems.reduce((sum, product) => sum + product.stock, 0) // ຈຳນວນ stock ທັງໝົດ
 
 // ເພີ່ມລາຍການສິນຄ້າ
 function addItem(product: Product) {
@@ -34,7 +34,7 @@ function addItem(product: Product) {
 
 // ລຶບລາຍການສິນຄ້າ
 function removeItem(id: number) {
-    productItems = productItems.filter((e) => e.id != id)
+    productItems = productItems.filter((e) => e.id != id) // ເອົາສະເພາະສິນຄ້າທີ່ມີ ID ບໍ່ກົງກັນ
 
     console.log('Removed product');
     console.table(productItems);
@@ -65,7 +65,12 @@ function addToCart(product: Product, qty: number) {
         amount: product.price * qty,
     }
 
-    cartItems.push(cart)
+    if (cartItems.find(c => c.id === product.id)) { // ຄົ້ນຫາສິນຄ້າທີ່ຖືກເລືອກແລ້ວ
+        cartItems = cartItems.map((e) => ({ ...e, quantity: e.quantity + cart.quantity, amount: e.amount + cart.amount })) // ແກ້ໄຂຈຳນວນ ແລະ ລາຄາລວມ
+    } else {
+        cartItems.push(cart) // ເພີ່ມລາຍການໃຫມ່
+    }
+
     updateItem({ ...product, stock: product.stock - qty }) // ຕັດສະຕ໊ອກ
 
     let total = cartItems.reduce((sum, cart) => sum + cart.amount, 0) // ຍອດລວມທັງໝົດ ທີ່ລູກຄ້າຕ້ອງຈ່າຍ
@@ -81,5 +86,6 @@ function pickItem(id: number, qty: number) {
     addToCart(product, qty)
 }
 
-pickItem(1, 10)
-pickItem(2, 2)
+pickItem(1, 2)
+pickItem(1, 3)
+pickItem(5, 5)
