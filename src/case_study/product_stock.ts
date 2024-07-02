@@ -55,7 +55,7 @@ function updateItem(product: Product) {
 // ເພີ່ມສິນຄ້າລົງກະຕ່າ
 function addToCart(product: Product, qty: number) {
 
-    if (product.stock < qty) return console.log('Sorry... product out of stock');
+    if (product.stock < qty) return console.log('Sorry... product out of stock'); // ກວດສອບ ຖ້າຈຳນວນຂາຍຫລາຍກວ່າຈຳນວນສະຕ໊ອກ
 
     let cart: Cart = {
         id: product.id,
