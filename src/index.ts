@@ -13,6 +13,14 @@ app.all('/', (c) => c.text('Welcome to the Hono application'))
 app.route('/basic', basic)
 app.route('/user', user)
 
+app.get('/promise', async (c) => {
+    const promise = () => new Promise((resolve, reject) => setTimeout(() => {
+        resolve('Welcome to the Hono application')
+    }, 3000))
+    const value = await promise() as string
+    return c.text(value)
+})
+
 app.notFound((c) => c.text('API Not Found'))
 
 export default app

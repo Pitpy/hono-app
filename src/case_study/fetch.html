@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+<body>
+    <button onclick="fetchData()">Fetch</button>
+    <div style="margin: 16px 0;" id="result"></div>
+</body>
+</html>
+<script>
+    const el = document.getElementById('result')
+    async function fetchData() {
+        el.innerHTML = 'Loading...'
+        const res = await fetch('http://localhost:3000/api/promise');
+        result = await res.text();
+        el.innerHTML = result
+    }
+</script>
