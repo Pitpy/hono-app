@@ -2,12 +2,12 @@ import { Database } from "bun:sqlite";
 
 const db = new Database("app.sqlite");
 
-type Option = {
+type Options = {
     params?: any;
     jsonFields?: string[]
 }
 
-export function queryAll(sql: string, opt?: Option) {
+export function queryAll(sql: string, opt?: Options) {
     try {
         const query = db.query(sql)
         const results = query.all(opt?.params);
@@ -18,7 +18,7 @@ export function queryAll(sql: string, opt?: Option) {
     }
 }
 
-export function queryOne(sql: string, opt?: Option) {
+export function queryOne(sql: string, opt?: Options) {
     try {
         const query = db.query(sql)
         const results = query.get(opt?.params);
@@ -29,7 +29,7 @@ export function queryOne(sql: string, opt?: Option) {
     }
 }
 
-export function querySave(sql: string, opt?: Option) {
+export function querySave(sql: string, opt?: Options) {
     try {
         const insert = db.prepare(sql);
         const values = db.transaction(value => {
