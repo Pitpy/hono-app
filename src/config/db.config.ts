@@ -3,14 +3,14 @@ import { Database } from "bun:sqlite";
 const db = new Database("app.sqlite");
 
 type Option = {
-    params?: Record<string, any>;
+    params?: any;
     jsonFields?: string[]
 }
 
 export function queryAll(sql: string, opt?: Option) {
     try {
         const query = db.query(sql)
-        const results = query.all(opt?.params || {});
+        const results = query.all(opt?.params);
         return results;
     } catch (error: any) {
         console.log('queryAll:', error.message);
@@ -21,7 +21,7 @@ export function queryAll(sql: string, opt?: Option) {
 export function queryOne(sql: string, opt?: Option) {
     try {
         const query = db.query(sql)
-        const results = query.get(opt?.params || {});
+        const results = query.get(opt?.params);
         return results;
     } catch (error: any) {
         console.log('queryOne:', error.message);
@@ -36,8 +36,8 @@ export function querySave(sql: string, opt?: Option) {
             for (const v of value) insert.run(v);
             return value.length;
         });
-        const count = values([opt?.params]);
-        return Number(count);
+        const count = values(opt?.params);
+        return count;
     } catch (error: any) {
         console.log('querySave:', error.message);
         return error.message;
