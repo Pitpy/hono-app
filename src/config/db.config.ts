@@ -7,10 +7,11 @@ type Options = {
     jsonFields?: string[]
 }
 
+export { db };
+
 export function queryAll(sql: string, opt?: Options) {
     try {
-        const query = db.query(sql)
-        const results = query.all(opt?.params);
+        const results = db.query(sql).all(opt?.params);
         return results;
     } catch (error: any) {
         console.log('queryAll:', error.message);
@@ -20,8 +21,7 @@ export function queryAll(sql: string, opt?: Options) {
 
 export function queryOne(sql: string, opt?: Options) {
     try {
-        const query = db.query(sql)
-        const results = query.get(opt?.params);
+        const results = db.query(sql).get(opt?.params);
         return results;
     } catch (error: any) {
         console.log('queryOne:', error.message);
@@ -31,9 +31,9 @@ export function queryOne(sql: string, opt?: Options) {
 
 export function querySave(sql: string, opt?: Options) {
     try {
-        const insert = db.prepare(sql);
+        const stmt = db.prepare(sql);
         const values = db.transaction(value => {
-            for (const v of value) insert.run(v);
+            for (const v of value) stmt.run(v);
             return value.length;
         });
         const count = values(opt?.params);
