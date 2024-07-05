@@ -32,7 +32,7 @@ user.post('/', async (c) => {
         $phone: form.phone,
         $address: JSON.stringify(form.address)
     }
-    const save = querySave('INSERT INTO users(name,email,phone,address) VALUES($name,$email,$phone,$address)', { params: form });
+    const save = querySave('INSERT INTO users(name,email,phone,address) VALUES($name,$email,$phone,$address)', { params: [form] });
 
     let res: ResObject = {
         code: save ? 10 : 12,
@@ -55,7 +55,7 @@ user.put('/', async (c) => {
     const save = querySave(`
         UPDATE users 
         SET name = $name, email = $email, phone = $phone, address = $address 
-        WHERE id = $id`, { params: form });
+        WHERE id = $id`, { params: [form] });
 
     let res: ResObject = {
         code: save ? 10 : 12,
@@ -67,7 +67,7 @@ user.put('/', async (c) => {
 })
 
 user.delete('/:id', (c) => {
-    const del = querySave('DELETE FROM users WHERE id = $id', { params: { $id: c.req.param('id') } });
+    const del = querySave('DELETE FROM users WHERE id = $id', { params: [{ $id: c.req.param('id') }] });
 
     let res: ResObject = {
         code: del ? 10 : 12,

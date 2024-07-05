@@ -15,7 +15,7 @@ export function queryAll(sql: string, opt?: Options) {
         return results;
     } catch (error: any) {
         console.log('queryAll:', error.message);
-        return error.message;
+        return null;
     }
 }
 
@@ -25,7 +25,7 @@ export function queryOne(sql: string, opt?: Options) {
         return results;
     } catch (error: any) {
         console.log('queryOne:', error.message);
-        return error.message;
+        return null;
     }
 }
 
@@ -40,6 +40,6 @@ export function querySave(sql: string, opt?: Options) {
         return count;
     } catch (error: any) {
         console.log('querySave:', error.message);
-        return error.message;
+        return null;
     }
 }
