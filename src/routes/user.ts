@@ -1,8 +1,8 @@
 import { Hono } from "hono";
-import { queryAll, queryOne, querySave } from "../config/db.config"
+import { queryAll, queryOne, querySave } from "../config/db.sqlite"
 import { ResObject } from "../types";
 
-const user = new Hono();
+export const user = new Hono()
 
 user.get('/', (c) => {
     const data = queryAll('SELECT * FROM users');
@@ -12,9 +12,7 @@ user.get('/', (c) => {
         data: data
     }
     return c.json(res)
-})
-
-user.get('/:id', (c) => {
+}).get('/:id', (c) => {
     const data = queryOne('SELECT * FROM users WHERE id = $id', { params: { $id: c.req.param('id') } });
     let res: ResObject = {
         code: 10,
@@ -22,9 +20,7 @@ user.get('/:id', (c) => {
         data: data
     }
     return c.json(res)
-})
-
-user.post('/', async (c) => {
+}).post('/', async (c) => {
     let form = await c.req.json()
     form = {
         $name: form.name,
@@ -41,9 +37,7 @@ user.post('/', async (c) => {
 
     if (save) return c.redirect("/api/user")
     return c.json(res)
-})
-
-user.put('/', async (c) => {
+}).put('/', async (c) => {
     let form = await c.req.json()
     form = {
         $id: form.id,
@@ -64,9 +58,7 @@ user.put('/', async (c) => {
 
     if (save) return c.redirect("/api/user")
     return c.json(res)
-})
-
-user.delete('/:id', (c) => {
+}).delete('/:id', (c) => {
     const del = querySave('DELETE FROM users WHERE id = $id', { params: [{ $id: c.req.param('id') }] });
 
     let res: ResObject = {
@@ -77,6 +69,3 @@ user.delete('/:id', (c) => {
     if (del) return c.redirect("/api/user")
     return c.json(res)
 })
-
-
-export { user } 
