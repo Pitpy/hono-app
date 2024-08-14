@@ -1,7 +1,11 @@
 {
   "name": "hono-app",
   "scripts": {
-    "dev": "bun run --hot src/index.ts"
+    "dev": "bun run --hot src/index.ts",
+    "build": "bun build ./src/index.ts ./src/routes/* ./src/models/* ./src/middleware/* ./src/config/* --outdir ./output --entry-naming [dir]/[name].[ext] --format esm --target bun",
+    "preview": "bun run ./output/index.js",
+    "start": "pm2 start --interpreter ~/.bun/bin/bun --name hono-app:3555 -i 2 ./src/index.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "hono": "^4.4.8",

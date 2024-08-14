@@ -1,4 +1,4 @@
-import { Hono } from 'hono'
+import { Hono } from 'hono/tiny'
 import { cors } from 'hono/cors'
 import { logger } from 'hono/logger'
 import { secureHeaders } from 'hono/secure-headers'
@@ -23,4 +23,7 @@ app.get('/promise', async (c) => {
 
 app.notFound((c) => c.text('API Not Found'))
 
-export default app
+export default {
+    fetch: app.fetch,
+    port: 3555
+}
